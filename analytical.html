@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Analytics - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Specific Page Enhancements */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--borders);
+        }
+        .filter-pills {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .pill {
+            padding: 10px 20px;
+            border-radius: 40px;
+            background: #FFF;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--borders);
+        }
+        .pill.active {
+            background: var(--primary-text);
+            color: #FFF;
+        }
+        .pill:hover:not(.active) {
+            background: var(--bg-color);
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .heat-cell {
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bg-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .heat-cell:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: pointer; 
+        }
+        .heat-lvl-1 { background: #EBF1ED; }
+        .heat-lvl-2 { background: #DDE7E0; }
+        .heat-lvl-3 { background: #A7B9AD; }
+        .heat-lvl-4 { background: #7F9B8C; }
+        
+        .event-item {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 16px; 
+            border-radius: 14px; 
+            background: #F9FAF9; 
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .event-item:hover {
+            background: #FFF;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transform: translateX(4px);
+        }
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #7F9B8C;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            box-shadow: 0 0 0 4px rgba(127, 155, 140, 0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0px rgba(127, 155, 140, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(127, 155, 140, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(127, 155, 140, 0); }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #7F9B8C;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z" fill="#7F9B8C"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" title="Home"><i data-lucide="layout-grid"></i></a>
+                <a href="wallet.html" class="nav-item" title="Wallet"><i data-lucide="wallet"></i></a>
+                <a href="analytical.html" class="nav-item active" title="Analytics"><i data-lucide="bar-chart-2"></i></a>
+                <a href="project.html" class="nav-item" title="Projects"><i data-lucide="folder"></i></a>
+                <a href="user.html" class="nav-item" title="Users"><i data-lucide="users"></i></a>
+                <a href="document.html" class="nav-item" title="Documents"><i data-lucide="file-text"></i></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings"><i data-lucide="settings"></i></a>
+                <a href="logout.html" class="nav-item" title="Logout"><i data-lucide="log-out"></i></a>
+                <div class="user-avatar-sm">
+                    <img src="data:image/webp;base64,UklGRlIJAABXRUJQVlA4IEYJAABQMQCdASq3ALYAPp1MoUulpCMlJTIaQLATiU3bq+GFM+6dqt75F/Uf9h/UuHBO7bD9Ie3x8xfnN+mX/C78T6JvTHsDTgLdR5yqycaf5MHx3onsDJnY1vXUcSxVHyrMPgz8Kse7qL7LjELVcJKf9abOA/uDcmANQK6CtXKHmkfqjzAeT1xF91SMcOvU6cVIBQtMuHNOC5cjbEdm6wuimSHWkf7u1L4uxQDw/RiN0011EkVNDplTHkkf6QM7ASVJnR2GfqpYI7Lp2cyO1Ecs/A/cUg2FRDPtJTBQjMKJl7EFTJkQANseo1D0qvbQc6jsWDbjw9naS21tRspnY4e//qmdmORqecIcor0tQJ4ClEYt0ymUdu1ws+POorHbNmxiSezGyrNdG/AWSr5+4e6utf9D2YJKEnn00QusRY/D4Yo+Ig9GIcAh0Jgb6Zxt+djarKlsVDNixerijOb2FRMHMUaHXoLonU4VbPrqyCFNdVBUv8Od2CSXiN0/Y5iedl9/jJG8J1fm3xC3LKd15Q+JFGvNSjQAAP78SgBc98GEgU6zFZp3MN7z18A00TcqTdy1FWsl44NNVnDiTKLiZOiHBSMz8VkkL/+wSPqJ3LDUVkmR8dBY3ydOmngv6i/pzI7hJi8T4eH7XaGDIX++7wr5mJcWO9H8T1ekb/vJgEk7VDhTM/2MVEX8RrF/H+N73f5LzkBGLeStOvOopduiarF1bdypQHUShUNuqkta1t8yKwPCC+BNxXG4jLyRWcU+yJeKg5g+Bwf0P6cKR//cVValTwh6uJrW9FLus5X250MAMXiXuX6bx/pRhaQzyn0OBzCjI5//+CKJudZNoxlbfRCRyg6vwCMaBAUAFYAIEQyBzWpxv63uqg5GJKKxQycClB1DsCCyT2Mjh8xaYk/QPrKWmCa0FNqRnIf3a6CRdFe92nsYkBUfIvl+Jd2xbTtF3YY7QbxhuNlKYDosKUNru6hOWvXUAaRCZ5TpnvL/1UoJZqdkdetBDd1g65sY7aR8/gUsf0QFPAA/4LnV94FvyFYJYZSUv38XX4DsFWsHCdtB8SbOS/okNMkbP79SZcoAV4qtO9trGWgKffHeG6XQ0Z9yvWlwb6LkMi2ANQVDV9brDX9EQhctxfFIlWQX9JIae/UAJKdwafZa/AQhl7cyPyNQkQ0uNRjhxnzfMj+Y01uB8XfrsKTh25mMqn3C9P/K7P8Mc2N8l1GW9wKdnpcvWJkX12BFngmfwVLUwiddZRxyyql523VOB1XiC70WlHEJD9V/HjyeMkY8m32VsNZ5J8iJXrR7g5v5ZAqM8HBzGrvq6kWynF01eGlWphX826Bcxu7rTfJ9ZThZsMnbH8/ruU3tv7fuFqtT7RGYQ6tYn7MrNDFRos/KrLRcoPPDsyyboaUUrouygyjrpAb1VMla7eeHSI2xy+UydqLJHQFPBtIGSWuTMIFFKXa4ltoiwgS1HQVTnlYVNhC75NzEGbTgha4v8fIvajycv7B2mDylC1gWCfgo5SdveBv9sNVCXnKIFo1mxqUXhBT2HCLOpdpLhjQ0Bag2C2FFZqr3SY3H6r2kUQiCcSt3jmBq9g1zBblm50vgrlhxBD00H6mQmQ3/x6hucHto7791INCp0xIb1y51wvWi2wfIMMe0Am/kQjQpPk0tc4HBt1N8Wmq6w6Hj34nyrYTBrZLvVT9U4aD43xfR3Zf03ThC7b9daRtjXz89LvVL63sUG4SJA07c2TGY6oI6nNX4xW7YT+IMJ2NKalDaARhGUaBXmVwuHAdqf7DaPa1mujxHgrGZaErGZuKDvEbJnkBJxG1zdn3S+MXWrVckd2MFBTPWCRkE5q8lneBgs4lYIaSwhkNDlZjzYLq/4EOiRRLF1cjhAz9Ru9xL4AANsaQlIMj3M/ym8+D7NQCPtlBqbGtqZay/+p+5BPup1r5/wijVKkwnVBwIUbhAW67AxJ01OmmUfcx2Kx4dkZp6Ts6skNIqdi7Hnr/czX+5h1+C3eec4wQEd0fTIXm1BGEGEw06NefPv3+eJ1XMcNGR00YhtT64lsTbf0l2eOX0K+yDUlrK6zf0FoOhtwRMHiLxTZMi+FI+Yr8FGNHJXFl9yOwBeR9sZVPMa3zgSJUmfvM7hw607fnBkPRnq2bzA+UlZlr3QnoPv42X9NJyCBawZS2WZ75WNUhMCS++HJ+T5KoNHxvjWfOyuOyU/Mb0VoespuIMTqjvxO61pL3DAuhV78hN8v4viAt0r3R/R4IOcXhvZ+Bt+fj0YLC9R6LAz30LYmWnetdoGp88hw1jQ7AdfNzv8H/nn7UJofJfTYZ3+iLpUDbHtwcl4uZ755xT6B2X9HeHE3CEzksKK/3v2WcyRJYsOhNtRbhL63QrXf7pOoKY2gMjnW0cA5f+zBvBbsEpE4TSybJhXgWfLQnwiVyqHevHKA1jFZaXj5PxtDnMS4l08BpTN9RUILXrCNyc6olpiWr4FuPwJBAzEvecAuXYuUwE5gEGtdNk+877+MbVbAsB8LAlrCcF5hAeHAvb29XpIc5e95M9ozcaghiZxjFBv2HD3zPXFlyXTLm2NQLRnLuyDyj1CnKvUd9P8WlqjyVbROwywkI6O890xRKJxGbWTUmjhFqwTfXersJ1t/8E0ortFnLTvZZ3ZTOfxa7F1aUHomE0j/4gimnkJH3QWNMDPkOUGtWZPXWzfuNQ+cJDNQLuKCNKeGhHqtQbdcuT82PCY6R/wKsl5XR+0UyQckHiuZ0CPs2ZfWX1frAmuCrwU6dvCKFNIkzbHFHg2aV5enFUKK0tA/ZJeFeri59ZXc1uqwMPGvqRNAmKBgUtmzMjE9VJasUk1ScICChycQq0/QvYbjG97v48yLiRjhsKeuD2iaa+UqV+A7qh0gIhK8weBDS/RJD7pF9bm8hQxCDrsx8YmMZXAJKnyv6bbKZq/0C1vKFSemoDPBQDLupTsy44KXgq5u415H+JN+rAT1PnjZrpmbKLM2gDBYoNzRGOUJWNgHsdkNjMpxlwfwo49uIomJDA/KP7Tzlz+qXf+WCdkiiP6lnrS9Rcsvyv8Wp/whQ8zj8lqZ3vWPfEYluNTvGWhQ0/Z4efzPAn4F0Qd9XZv1o7m/6N1a4feAIDbhS4XgouC/6I0fzrnG+zUSK/YVJJCvKRWlAYgAAAAAA" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Advanced Insights</h1>
+                    <p>Real-time performance and audience metrics</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="create-view-btn" style="background-color: var(--primary-text);"><i data-lucide="plus" style="width: 14px; margin-right: 8px;"></i>Create New View</button>
+                    <button class="icon-btn" id="share-btn"><i data-lucide="share-2"></i></button>
+                </div>
+            </header>
+
+            <div class="filter-pills" id="filter-pills-container">
+                <div class="pill active">All Traffic</div>
+                <div class="pill">Organic</div>
+                <div class="pill">Paid Search</div>
+                <div class="pill">Referral</div>
+                <div class="pill">Social</div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Dual Axis Primary Chart -->
+                <div class="middle-row" style="grid-template-columns: 1fr;">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 style="font-size: 20px;">Audience Growth</h3>
+                                <p style="font-size: 12px; color: var(--secondary-text);">Active Users vs. New Registrations</p>
+                            </div>
+                            <div class="dropdown">
+                                <span>Last 30 Days</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="balance-chart-container" style="height: 300px; position: relative;">
+                            <svg class="balance-chart" viewBox="0 0 500 150" preserveAspectRatio="none">
+                                <!-- Area for Active Users -->
+                                <path fill="rgba(127, 155, 140, 0.15)" d="M0,120 C50,110 100,40 150,60 C200,80 250,30 300,50 C350,90 400,60 450,40 C500,70 L500,150 L0,150 Z" />
+                                <!-- Line for Active Users -->
+                                <path fill="none" stroke="#7F9B8C" stroke-width="4" stroke-linecap="round" d="M0,120 C50,110 100,40 150,60 C200,80 250,30 300,50 C350,90 400,60 450,40 C500,70" />
+                                <!-- Dashed Line for Registrations -->
+                                <path fill="none" stroke="#A7B9AD" stroke-width="2" stroke-dasharray="8,8" d="M0,140 C50,130 100,90 150,100 C200,110 250,60 300,80 C350,110 400,90 450,70 C500,90" />
+                            </svg>
+                        </div>
+                        <div style="display: flex; gap: 24px; margin-top: 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;">
+                                <span style="width: 12px; height: 12px; background: #7F9B8C; border-radius: 3px;"></span> Active Users
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;">
+                                <span style="width: 12px; height: 12px; border: 2px dashed #A7B9AD; border-radius: 3px;"></span> New Registrations
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle-row" style="grid-template-columns: 1.2fr 1fr 1.3fr; align-items: stretch;">
+                    <!-- Real-time Activity Heatmap -->
+                    <div class="card" style="padding: 28px;">
+                        <div class="card-header">
+                            <h3 style="font-size: 18px;">Activity Intensity</h3>
+                        </div>
+                        <p style="font-size: 13px; color: var(--secondary-text); margin-top: 8px;">Peak engagement times by hour</p>
+                        <div class="heatmap-grid">
+                            <div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-2"></div><div class="heat-cell heat-lvl-4"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-2"></div>
+                            <div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-3"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-4"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-3"></div>
+                            <div class="heat-cell heat-lvl-4"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-3"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-4"></div><div class="heat-cell heat-lvl-3"></div><div class="heat-cell heat-lvl-1"></div>
+                            <div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-2"></div><div class="heat-cell heat-lvl-1"></div><div class="heat-cell heat-lvl-3"></div><div class="heat-cell heat-lvl-2"></div><div class="heat-cell heat-lvl-4"></div><div class="heat-cell heat-lvl-1"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 24px; font-size: 12px; color: var(--secondary-text); align-items: center;">
+                            <span>Less</span>
+                            <div style="display: flex; gap: 6px;">
+                                <div style="width: 14px; height: 14px; background: #EBF1ED; border-radius: 3px;"></div>
+                                <div style="width: 14px; height: 14px; background: #DDE7E0; border-radius: 3px;"></div>
+                                <div style="width: 14px; height: 14px; background: #A7B9AD; border-radius: 3px;"></div>
+                                <div style="width: 14px; height: 14px; background: #7F9B8C; border-radius: 3px;"></div>
+                            </div>
+                            <span>More</span>
+                        </div>
+                    </div>
+
+                    <!-- User Sentiment Gauge -->
+                    <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 28px;">
+                        <div class="card-header" style="width: 100%; text-align: left;"><h3 style="font-size: 18px;">Sentiment</h3></div>
+                        <div style="position: relative; width: 160px; height: 80px; margin: 30px 0 10px 0;">
+                            <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+                                <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#F1F3F1" stroke-width="10" stroke-linecap="round" />
+                                <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#7F9B8C" stroke-width="10" stroke-linecap="round" stroke-dasharray="125" stroke-dashoffset="25" />
+                            </svg>
+                            <div style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); font-weight: 800; font-size: 20px; color: var(--primary-text);">Positive</div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 13px; color: var(--secondary-text); line-height: 1.5;">92% of users are satisfied with the latest update.</p>
+                    </div>
+
+                    <!-- Live Event Log -->
+                    <div class="card" style="padding: 28px;">
+                        <div class="card-header" style="margin-bottom: 20px;">
+                            <h3 style="font-size: 18px;"><span class="live-dot"></span>Live Events</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            <div class="event-item">
+                                <span style="font-size: 14px; font-weight: 600;">New Sale</span>
+                                <span style="font-size: 12px; color: var(--secondary-text);">Just now</span>
+                            </div>
+                            <div class="event-item">
+                                <span style="font-size: 14px; font-weight: 600;">Signup: @jdoe</span>
+                                <span style="font-size: 12px; color: var(--secondary-text);">2m ago</span>
+                            </div>
+                            <div class="event-item">
+                                <span style="font-size: 14px; font-weight: 600;">New Review</span>
+                                <span style="font-size: 12px; color: var(--secondary-text);">5m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-row" id="analytical-top-row">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Conversion Value</h3>
+                            <h2>$18,240.50</h2>
+                            <span class="positive">+12.4%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Ad Spend (ROAS)</h3>
+                            <h2>$4,120.00</h2>
+                            <span style="font-size: 12px; color: var(--secondary-text);">4.2x ROAS</span>
+                        </div>
+                    </div>
+                    <div class="stat-card dark-green">
+                        <div class="stat-info">
+                            <h3>Net Profit</h3>
+                            <h2>$14,120.50</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>LTV</h3>
+                            <h2>$1,240.00</h2>
+                            <span class="positive">+5.2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>

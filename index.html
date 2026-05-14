@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <!-- Custom SVG for logo -->
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z"
+                            fill="#7F9B8C" />
+                    </svg>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active" title="Home">
+                    <i data-lucide="layout-grid"></i>
+                </a>
+                <a href="wallet.html" class="nav-item" title="Wallet">
+                    <i data-lucide="wallet"></i>
+                </a>
+                <a href="analytical.html" class="nav-item" title="Analytics">
+                    <i data-lucide="bar-chart-2"></i>
+                </a>
+                <a href="project.html" class="nav-item" title="Projects">
+                    <i data-lucide="folder"></i>
+                </a>
+                <a href="user.html" class="nav-item" title="Users">
+                    <i data-lucide="users"></i>
+                </a>
+                <a href="document.html" class="nav-item" title="Documents">
+                    <i data-lucide="file-text"></i>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings">
+                    <i data-lucide="settings"></i>
+                </a>
+                <a href="logout.html" class="nav-item" title="Logout">
+                    <i data-lucide="log-out"></i>
+                </a>
+                <div class="user-avatar-sm">
+                    <img src="data:image/webp;base64,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" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Hello, Carlic!</h1>
+                    <p>Explore information and activity about your property</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search..">
+                        <button class="search-btn">
+                            <i data-lucide="search"></i>
+                        </button>
+                    </div>
+                    <button class="icon-btn notification-btn" id="msg-btn">
+                        <i data-lucide="message-square"></i>
+                        <span class="badge"></span>
+                    </button>
+                    <button class="icon-btn" id="bell-btn">
+                        <i data-lucide="bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Top Row (4 cards) -->
+                <div class="top-row">
+                    <!-- Card 1 -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Spent this month</h3>
+                            <h2>$682.5</h2>
+                        </div>
+                        <div class="stat-graph">
+                            <svg width="48" height="32" viewBox="0 0 48 32">
+                                <rect x="0" y="16" width="6" height="16" rx="3" fill="#A7B9AD" />
+                                <rect x="10" y="8" width="6" height="24" rx="3" fill="#A7B9AD" />
+                                <rect x="20" y="0" width="6" height="32" rx="3" fill="#A7B9AD" />
+                                <rect x="30" y="12" width="6" height="20" rx="3" fill="#A7B9AD" />
+                                <rect x="40" y="24" width="6" height="8" rx="3" fill="#7F9B8C" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="stat-card">
+                        <div class="stat-icon light-green">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <div class="stat-info-center">
+                            <h3>New clients</h3>
+                            <h2>321</h2>
+                        </div>
+                        <div class="stat-graph-line">
+                            <svg width="40" height="20" viewBox="0 0 40 20">
+                                <path d="M0 15 Q 10 5, 20 10 T 40 5" fill="none" stroke="#7F9B8C" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="stat-card">
+                        <div class="stat-icon beige">
+                            <i data-lucide="dollar-sign"></i>
+                        </div>
+                        <div class="stat-info-center">
+                            <h3>Earnings</h3>
+                            <h2>$350.40</h2>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="stat-card dark-green">
+                        <div class="stat-info">
+                            <h3>Activity</h3>
+                            <h2>$540.50</h2>
+                        </div>
+                        <div class="stat-graph-line">
+                            <svg width="40" height="20" viewBox="0 0 40 20">
+                                <path d="M0 10 Q 10 0, 20 15 T 40 5" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Row (3 cards: Balance, Earnings, Profile) -->
+                <div class="middle-row">
+                    <!-- Balance Analytics Card -->
+                    <div class="card balance-card">
+                        <div class="card-header">
+                            <div class="title-with-badge">
+                                <h3>Balance</h3>
+                                <span class="status-badge"><span class="dot"></span> On track</span>
+                            </div>
+                            <div class="dropdown" id="balance-dropdown">
+                                <span>Monthly</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="balance-stats">
+                            <div class="b-stat">
+                                <span class="label">Saves</span>
+                                <div class="b-val">
+                                    <h4>43.50%</h4>
+                                    <span class="positive">+2.45%</span>
+                                </div>
+                            </div>
+                            <div class="b-stat">
+                                <span class="label">Balance</span>
+                                <div class="b-val">
+                                    <h4>$52,422</h4>
+                                    <span class="negative">-4.75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="balance-chart-container">
+                            <svg class="balance-chart" viewBox="0 0 500 150" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#7F9B8C" stop-opacity="0.2" />
+                                        <stop offset="100%" stop-color="#7F9B8C" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <path class="chart-area" fill="url(#chartGradient)"
+                                    d="M0,80 C30,80 40,120 70,120 C100,120 110,60 140,60 C170,60 180,100 210,100 C240,100 250,50 280,50 C310,50 320,110 350,110 C380,110 390,70 420,70 C450,70 470,80 500,80 L500,150 L0,150 Z" />
+                                <path class="chart-line" fill="none" stroke="#7F9B8C" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    d="M0,80 C30,80 40,120 70,120 C100,120 110,60 140,60 C170,60 180,100 210,100 C240,100 250,50 280,50 C310,50 320,110 350,110 C380,110 390,70 420,70 C450,70 470,80 500,80" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Earnings Circular Card -->
+                    <div class="card earnings-circle-card">
+                        <div class="card-header">
+                            <h3>Earnings</h3>
+                        </div>
+                        <p class="secondary-text">Total Expense</p>
+                        <h2 class="green-text">$6078.76</h2>
+                        <p class="profit-text">Profit is 34% More than last Month</p>
+
+                        <div class="circular-progress-container">
+                            <svg class="circular-progress" viewBox="0 0 100 60">
+                                <path class="bg-path" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#ECE9E2"
+                                    stroke-width="16" stroke-linecap="round" />
+                                <path class="progress-path" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#7F9B8C"
+                                    stroke-width="16" stroke-linecap="round" stroke-dasharray="125"
+                                    stroke-dashoffset="25" />
+                            </svg>
+                            <div class="progress-value">80%</div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Card -->
+                    <div class="card profile-card">
+                        <div class="profile-avatar-large">
+                            <img src="data:image/webp;base64,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"
+                                alt="Carlic Bolomboy">
+                            <span class="glasses-emoji">😎</span>
+                        </div>
+                        <h3 class="profile-name">Carlic Bolomboy</h3>
+                        <p class="profile-email">carlic@gmai.com</p>
+                        <div class="profile-stats">
+                            <div class="p-stat">
+                                <span class="p-label">Projects</span>
+                                <span class="p-val">26</span>
+                            </div>
+                            <div class="p-stat">
+                                <span class="p-label">Followers</span>
+                                <span class="p-val">356</span>
+                            </div>
+                            <div class="p-stat">
+                                <span class="p-label">Following</span>
+                                <span class="p-val">68</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row (3 cards: Wallet, Transfers, Security) -->
+                <div class="bottom-row">
+                    <!-- Wallet Card -->
+                    <div class="card wallet-card">
+                        <div class="wallet-content">
+                            <h3>Available Credit<br>Card in Wallet</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur. Facilisis tincidunt purus id hendrerit cras massa
+                                sollicitudin adipiscing. Sit egestas risus sed sit auctor.</p>
+                            <button class="btn-primary" id="add-card-btn">Add New Card +</button>
+                        </div>
+                        <div class="wallet-cards-3d">
+                            <div class="cc cc-3">
+                                <div class="cc-type">MasterCard</div>
+                                <div class="cc-number">1234 1234 1234 1234</div>
+                                <div class="cc-circles">
+                                    <div class="circle red"></div>
+                                    <div class="circle yellow"></div>
+                                </div>
+                            </div>
+                            <div class="cc cc-2">
+                                <div class="cc-type">MasterCard</div>
+                                <div class="cc-number">1234 1234 1234 1234</div>
+                                <div class="cc-circles">
+                                    <div class="circle red"></div>
+                                    <div class="circle yellow"></div>
+                                </div>
+                            </div>
+                            <div class="cc cc-1">
+                                <div class="cc-logo">Master Card</div>
+                                <div class="cc-holder">LANA STEINER</div>
+                                <div class="cc-number">1234 1234 1234 1234</div>
+                                <div class="cc-expiry">06/28</div>
+                                <div class="cc-circles">
+                                    <div class="circle red"></div>
+                                    <div class="circle yellow"></div>
+                                </div>
+                                <div class="cc-wave">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3"
+                                            stroke="white" stroke-opacity="0.5" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transfers Card -->
+                    <div class="card transfers-card">
+                        <h3>Your Transfers</h3>
+                        <div class="transfer-list">
+                            <div class="transfer-item">
+                                <div class="t-line"></div>
+                                <div class="t-details">
+                                    <h4>From Anna Jones</h4>
+                                    <p>Today, 14:34</p>
+                                </div>
+                                <div class="t-amount positive">+2.45%</div>
+                            </div>
+                            <div class="transfer-item">
+                                <div class="t-line red"></div>
+                                <div class="t-details">
+                                    <h4>To Carlos Brown III</h4>
+                                    <p>Today, 15:23</p>
+                                </div>
+                                <div class="t-amount negative">-4.75%</div>
+                            </div>
+                            <div class="transfer-item">
+                                <div class="t-line"></div>
+                                <div class="t-details">
+                                    <h4>From Joel Cannan</h4>
+                                    <p>Today, 17:54</p>
+                                </div>
+                                <div class="t-amount positive">+2.45%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Card -->
+                    <div class="card security-card">
+                        <div class="fingerprint-icon">
+                            <i data-lucide="fingerprint"></i>
+                        </div>
+                        <h3>Keep you safe!</h3>
+                        <p>Update your security password</p>
+                        <button class="btn-primary" id="update-security-btn">Update Your Security</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

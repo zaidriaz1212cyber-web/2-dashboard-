@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z" fill="#7F9B8C"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" title="Home"><i data-lucide="layout-grid"></i></a>
+                <a href="wallet.html" class="nav-item" title="Wallet"><i data-lucide="wallet"></i></a>
+                <a href="analytical.html" class="nav-item" title="Analytics"><i data-lucide="bar-chart-2"></i></a>
+                <a href="project.html" class="nav-item active" title="Projects"><i data-lucide="folder"></i></a>
+                <a href="user.html" class="nav-item" title="Users"><i data-lucide="users"></i></a>
+                <a href="document.html" class="nav-item" title="Documents"><i data-lucide="file-text"></i></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings"><i data-lucide="settings"></i></a>
+                <a href="logout.html" class="nav-item" title="Logout"><i data-lucide="log-out"></i></a>
+                <div class="user-avatar-sm">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Projects</h1>
+                    <p>Track your active work and milestones</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="add-project-btn">New Project +</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="top-row" id="projects-container">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <i data-lucide="layers" style="color: var(--accent-green);"></i>
+                            <span class="status-badge">In Progress</span>
+                        </div>
+                        <h3>E-commerce Redesign</h3>
+                        <p style="font-size: 13px; color: var(--secondary-text); margin-top: 8px;">Due: June 20, 2026</p>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <i data-lucide="code" style="color: var(--accent-green);"></i>
+                            <span class="status-badge" style="background-color: #F8F3E6; color: #D4A373;">Planning</span>
+                        </div>
+                        <h3>Mobile App API</h3>
+                        <p style="font-size: 13px; color: var(--secondary-text); margin-top: 8px;">Due: July 15, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>

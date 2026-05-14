@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z" fill="#7F9B8C"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" title="Home"><i data-lucide="layout-grid"></i></a>
+                <a href="wallet.html" class="nav-item active" title="Wallet"><i data-lucide="wallet"></i></a>
+                <a href="analytical.html" class="nav-item" title="Analytics"><i data-lucide="bar-chart-2"></i></a>
+                <a href="project.html" class="nav-item" title="Projects"><i data-lucide="folder"></i></a>
+                <a href="user.html" class="nav-item" title="Users"><i data-lucide="users"></i></a>
+                <a href="document.html" class="nav-item" title="Documents"><i data-lucide="file-text"></i></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings"><i data-lucide="settings"></i></a>
+                <a href="logout.html" class="nav-item" title="Logout"><i data-lucide="log-out"></i></a>
+                <div class="user-avatar-sm">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>My Wallet</h1>
+                    <p>Manage your cards, balances and transactions</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search..">
+                        <button class="search-btn"><i data-lucide="search"></i></button>
+                    </div>
+                    <button class="icon-btn"><i data-lucide="bell"></i></button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="top-row">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Total Balance</h3>
+                            <h2>$124,592.00</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Monthly Income</h3>
+                            <h2>$12,450.00</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Monthly Expenses</h3>
+                            <h2>$8,240.00</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card dark-green">
+                        <div class="stat-info">
+                            <h3>Savings Rate</h3>
+                            <h2>34.2%</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle-row">
+                    <div class="card wallet-card" style="grid-column: span 2;">
+                        <div class="wallet-content">
+                            <h3>Payment Methods</h3>
+                            <p>You have 3 active cards in your digital wallet.</p>
+                            <button class="btn-primary">Add New Card +</button>
+                        </div>
+                        <div class="wallet-cards-3d">
+                             <div class="cc cc-3"></div>
+                             <div class="cc cc-2"></div>
+                             <div class="cc cc-1">
+                                <div class="cc-logo">Master Card</div>
+                                <div class="cc-holder">LANA STEINER</div>
+                                <div class="cc-number">**** **** **** 1234</div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="card security-card">
+                        <div class="fingerprint-icon"><i data-lucide="fingerprint"></i></div>
+                        <h3>Wallet Security</h3>
+                        <p>2FA is currently enabled</p>
+                        <button class="btn-primary">Settings</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

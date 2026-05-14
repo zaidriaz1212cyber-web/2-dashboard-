@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z" fill="#7F9B8C"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" title="Home"><i data-lucide="layout-grid"></i></a>
+                <a href="wallet.html" class="nav-item" title="Wallet"><i data-lucide="wallet"></i></a>
+                <a href="analytical.html" class="nav-item" title="Analytics"><i data-lucide="bar-chart-2"></i></a>
+                <a href="project.html" class="nav-item" title="Projects"><i data-lucide="folder"></i></a>
+                <a href="user.html" class="nav-item active" title="Users"><i data-lucide="users"></i></a>
+                <a href="document.html" class="nav-item" title="Documents"><i data-lucide="file-text"></i></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings"><i data-lucide="settings"></i></a>
+                <a href="logout.html" class="nav-item" title="Logout"><i data-lucide="log-out"></i></a>
+                <div class="user-avatar-sm">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div>
+                        <h1>User Management</h1>
+                        <p>Manage your team and permissions</p>
+                    </div>
+                    <button class="btn-primary" id="add-user-btn" style="padding: 12px 24px;">+ Create New User</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--borders);">
+                                <th style="padding: 16px;">User</th>
+                                <th style="padding: 16px;">Role</th>
+                                <th style="padding: 16px;">Status</th>
+                                <th style="padding: 16px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            <tr style="border-bottom: 1px solid var(--borders);">
+                                <td style="padding: 16px; display: flex; align-items: center; gap: 12px;">
+                                    <img src="https://i.pravatar.cc/150?img=1" style="width: 32px; height: 32px; border-radius: 50%;">
+                                    <span>Anna Jones</span>
+                                </td>
+                                <td style="padding: 16px;">Admin</td>
+                                <td style="padding: 16px;"><span class="status-badge">Active</span></td>
+                                <td style="padding: 16px;">
+                                    <button class="icon-btn" style="width: 32px; height: 32px; display: inline-flex;" title="Edit Role"><i data-lucide="edit-2" style="width: 14px;"></i></button>
+                                    <button class="icon-btn" style="width: 32px; height: 32px; display: inline-flex; color: #FF5A5F;" title="Delete User"><i data-lucide="trash-2" style="width: 14px;"></i></button>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--borders);">
+                                <td style="padding: 16px; display: flex; align-items: center; gap: 12px;">
+                                    <img src="https://i.pravatar.cc/150?img=2" style="width: 32px; height: 32px; border-radius: 50%;">
+                                    <span>Carlos Brown</span>
+                                </td>
+                                <td style="padding: 16px;">Editor</td>
+                                <td style="padding: 16px;"><span class="status-badge" style="background-color: #FFEBEB; color: #FF5A5F;">Offline</span></td>
+                                <td style="padding: 16px;">
+                                    <button class="icon-btn" style="width: 32px; height: 32px; display: inline-flex;" title="Edit Role"><i data-lucide="edit-2" style="width: 14px;"></i></button>
+                                    <button class="icon-btn" style="width: 32px; height: 32px; display: inline-flex; color: #FF5A5F;" title="Delete User"><i data-lucide="trash-2" style="width: 14px;"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>lucide.createIcons();</script>
+    <script src="script.js"></script>
+</body>
+</html>

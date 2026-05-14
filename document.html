@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L18.5 10.5H27L20 16L22.5 24.5L16 19.5L9.5 24.5L12 16L5 10.5H13.5L16 2Z" fill="#7F9B8C"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" title="Home"><i data-lucide="layout-grid"></i></a>
+                <a href="wallet.html" class="nav-item" title="Wallet"><i data-lucide="wallet"></i></a>
+                <a href="analytical.html" class="nav-item" title="Analytics"><i data-lucide="bar-chart-2"></i></a>
+                <a href="project.html" class="nav-item" title="Projects"><i data-lucide="folder"></i></a>
+                <a href="user.html" class="nav-item" title="Users"><i data-lucide="users"></i></a>
+                <a href="document.html" class="nav-item active" title="Documents"><i data-lucide="file-text"></i></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="setting.html" class="nav-item" title="Settings"><i data-lucide="settings"></i></a>
+                <a href="logout.html" class="nav-item" title="Logout"><i data-lucide="log-out"></i></a>
+                <div class="user-avatar-sm">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Documents</h1>
+                    <p>Access your files and shared reports</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="upload-file-btn">Upload File +</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div style="display: flex; flex-direction: column; gap: 16px;" id="files-list">
+                        <div style="display: flex; align-items: center; gap: 16px; padding: 12px; background-color: #FFF; border-radius: 12px; box-shadow: var(--shadow);">
+                            <i data-lucide="file-text" style="color: var(--accent-green);"></i>
+                            <div style="flex-grow: 1;">
+                                <h4 style="font-size: 14px;">Quarterly_Report_Q1.pdf</h4>
+                                <span style="font-size: 12px; color: var(--secondary-text);">2.4 MB • Shared by Anna</span>
+                            </div>
+                            <button class="icon-btn" style="width: 32px; height: 32px;"><i data-lucide="download" style="width: 16px;"></i></button>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; padding: 12px; background-color: #FFF; border-radius: 12px; box-shadow: var(--shadow);">
+                            <i data-lucide="image" style="color: var(--accent-green);"></i>
+                            <div style="flex-grow: 1;">
+                                <h4 style="font-size: 14px;">Dashboard_Design_V2.png</h4>
+                                <span style="font-size: 12px; color: var(--secondary-text);">5.8 MB • Uploaded Today</span>
+                            </div>
+                            <button class="icon-btn" style="width: 32px; height: 32px;"><i data-lucide="download" style="width: 16px;"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+    <style>
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</body>
+</html>
