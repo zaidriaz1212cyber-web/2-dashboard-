@@ -750,7 +750,7 @@ body {
     margin-bottom: 24px;
 }
 
-/* Responsive */
+/* Responsive Enhancements */
 @media (max-width: 1200px) {
     .top-row {
         grid-template-columns: repeat(2, 1fr);
@@ -769,48 +769,102 @@ body {
     }
 }
 
+@media (max-width: 992px) {
+    .dashboard-container {
+        padding: 16px;
+        gap: 16px;
+    }
+    .main-content {
+        padding: 20px;
+    }
+}
+
 @media (max-width: 768px) {
     .dashboard-container {
         grid-template-columns: 1fr;
+        padding-bottom: 100px; /* Space for bottom nav */
     }
     .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
         flex-direction: row;
-        height: auto;
-        padding: 16px 24px;
-        position: static;
-        border-radius: 24px;
+        padding: 0 20px;
+        border-right: none;
+        border-top: 1px solid var(--borders);
+        z-index: 1000;
+        justify-content: space-between;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+    }
+    .sidebar-top {
+        display: none; /* Hide logo on mobile bottom nav */
     }
     .sidebar-nav {
         flex-direction: row;
+        gap: 10px;
+        flex: 1;
+        justify-content: space-around;
     }
     .sidebar-bottom {
         flex-direction: row;
+        gap: 10px;
+        padding-top: 0;
+        border-top: none;
+    }
+    .user-avatar-sm {
+        display: none;
     }
     .header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 20px;
+    }
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .search-bar {
+        flex: 1;
     }
     .search-bar input {
         width: 100%;
     }
-    .middle-row {
-        grid-template-columns: 1fr;
+    .top-row, .middle-row, .bottom-row {
+        grid-template-columns: 1fr !important;
     }
-    .profile-card {
-        grid-column: span 1;
+    .card, .stat-card {
+        padding: 24px;
     }
     .wallet-card {
         flex-direction: column;
-        padding: 24px;
     }
     .wallet-cards-3d {
         position: relative;
-        right: 0;
-        top: 0;
         transform: none;
-        margin-top: 32px;
-        margin-left: 20px;
+        top: 0;
+        right: 0;
+        margin: 20px auto 0;
+        width: 100%;
+        max-width: 300px;
+    }
+    .heatmap-grid {
+        gap: 6px;
+    }
+    .heat-cell {
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 24px;
+    }
+    .modal-container {
+        padding: 24px;
     }
 }
 
